@@ -51,7 +51,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 }
 ```
 
-:star::star::star::star:[3. 无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
+[3. 无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/):star::star::star::star:
 
 `这道题比较难理解一些`，核心是找到当前遍历到的字符上一次出现的位置和**不包含重复字符串的子串起点**，**重点是左边界的更新**
 

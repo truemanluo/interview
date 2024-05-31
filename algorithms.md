@@ -85,3 +85,38 @@ func max(a, b int) int {
 >2. i = 1， j = 0，occ[b] = 1
 >3. i = 2， j =  2，occ[b] = 2
 >4. i = 3， j =  2，occ[a] = 3，注意：此时虽然上次a出现的位置是0，但是计算不重复子串长度的时候不能以`3-0+1`来计算，因为中间可能有重复字符，**不包含重复字符串的子串起点**`j`才是真正的起点（`3-2+1`）
+
+[【hard】4. 寻找两个正序数组的中位数](https://leetcode.cn/problems/median-of-two-sorted-arrays/)
+
+[5. 最长回文子串](https://leetcode.cn/problems/longest-palindromic-substring/)
+
+`中心拓展法：注意边界条件 i >= 0 && j < len(s) && i <= j && s[i] == s[j]` 
+
+```go
+func longestPalindrome(s string) string {
+	var ans string
+	for i := 0; i < len(s); i++ {
+		palindrome1 := expand(s, i, i)
+		palindrome2 := expand(s, i, i+1)
+		if len(palindrome1) > len(ans) {
+			ans = palindrome1
+		}
+
+		if len(palindrome2) > len(ans) {
+			ans = palindrome2
+		}
+	}
+	return ans
+}
+
+func expand(s string, i, j int) string {
+	for i >= 0 && j < len(s) && i <= j && s[i] == s[j] {
+		i--
+		j++
+	}
+	return s[i+1 : j]
+}
+```
+
+
+

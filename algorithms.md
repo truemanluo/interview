@@ -118,5 +118,25 @@ func expand(s string, i, j int) string {
 }
 ```
 
+[【hard】10. 正则表达式匹配](https://leetcode.cn/problems/regular-expression-matching/)
 
+[11. 盛最多水的容器](https://leetcode.cn/problems/container-with-most-water/description/)
+
+`贪心法 + 双指针`
+
+```go
+func maxArea(height []int) int {
+    l, r := 0, len(height) - 1
+    ans := 0
+    for l < r {
+        ans = max(ans, min(height[l], height[r])*(r-l))
+        if height[l] < height[r] {
+            l++
+        } else {
+            r--
+        }
+    }
+    return ans
+}
+```
 

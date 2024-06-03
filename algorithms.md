@@ -140,3 +140,46 @@ func maxArea(height []int) int {
 }
 ```
 
+[15. 三数之和](https://leetcode.cn/problems/3sum/description/)
+
+`可以理解成是固定first，后面用一个双指针，所以时间复杂度是`$O(n^2)$
+
+```go
+func threeSum(nums []int) [][]int {
+	n := len(nums)
+	sort.Ints(nums)
+	ans := make([][]int, 0)
+
+    for first := 0; first < n - 2; first++ {
+        if first > 0 && nums[first] == nums[first - 1] {
+            continue
+        }
+        target := -1 * nums[first]
+        third := n - 1
+
+        for second := first+1; second < third; second++ {
+            // 需要和上一次枚举的数不相同
+            if second > first + 1 && nums[second] == nums[second - 1] {
+                continue
+            }
+
+            // 需要保证 b 的指针在 c 的指针的左侧
+            for second < third && nums[second] + nums[third] > target {
+                third--
+            }
+
+            if second == third {
+                break
+            }
+
+            if nums[second] + nums[third] == target {
+                ans = append(ans, []int{nums[first], nums[second], nums[third]})
+            } 
+        }
+    }
+    return ans
+}
+```
+
+
+

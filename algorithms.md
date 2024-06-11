@@ -140,7 +140,7 @@ func maxArea(height []int) int {
 }
 ```
 
-[15. 三数之和](https://leetcode.cn/problems/3sum/description/)
+[15. 三数之和](https://leetcode.cn/problems/3sum/description/):star::star::star::star:
 
 `可以理解成是固定first，后面用一个双指针，所以时间复杂度是`$O(n^2)$
 
@@ -178,6 +178,46 @@ func threeSum(nums []int) [][]int {
         }
     }
     return ans
+}
+```
+
+17.[电话号码的组合](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/)
+
+`dfs + 回溯，参考`[golang题解](https://books.halfrost.com/leetcode/ChapterFour/0001~0099/0017.Letter-Combinations-of-a-Phone-Number/),
+
+```go
+func letterCombinations(digits string) []string {
+	var ans []string
+	if len(digits) == 0 {
+		return ans
+	}
+	helper(0, digits, "", &ans)
+	return ans
+}
+
+func helper(i int, s, cur string, ans *[]string) {
+	if i >= len(s) {
+		*ans = append(*ans, cur)
+		return
+	}
+
+	letters := dict[rune(s[i])]
+	for k := 0; k < len(letters); k++ {
+		helper(i+1, s, cur+string(letters[k]), ans)
+	}
+
+}
+
+// dfs
+var dict = map[rune]string{
+	'2': "abc",
+	'3': "def",
+	'4': "ghi",
+	'5': "jkl",
+	'6': "mno",
+	'7': "pqrs",
+	'8': "tuv",
+	'9': "wxyz",
 }
 ```
 
